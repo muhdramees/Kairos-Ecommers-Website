@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.views.decorators.cache import cache_control
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from .models import EmailUser
 
 # Create your views here.
 
@@ -51,10 +52,14 @@ def user_login(request):
     
 # @login_required(login_url="/login")
 def home(request):
+    User = EmailUser
+    user = User.objects.all()
 
     if 'email' in request.session:
-        return render(request, "homepage.html")
 
+        return render(request, "homepage.html", {'user' : user})
+
+        
     return redirect('user_login')
 
     

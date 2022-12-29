@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+<!-- belle/login.html   11 Nov 2019 12:22:27 GMT -->
+
+{% block content %}
+
+
+<div class="pageWrapper">
+	<!--Search Form Drawer-->
+	
+    <!--End Search Form Drawer-->
+    <!--Top Header-->
+    
+    <!--End Top Header-->
+    <!--Header-->
+    <div class="header-wrap animated d-flex">
+    	<div class="container-fluid">        
+            <div class="row align-items-center">
+            	<!--Desktop Logo-->
+                <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+                    <a href="{% url 'index' %}">
+                    	<img src="{% static 'images\kairos\Kairos-Logo-450x138.png' %}" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
+                    </a>
+                </div>
+                <!--End Desktop Logo-->
+                <div class="col-2 col-sm-3 col-md-3 col-lg-8">
+                	<div class="d-block d-lg-none">
+                        <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                        	<i class="icon anm anm-times-l"></i>
+                            <i class="anm anm-bars-r"></i>
+                        </button>
+                    </div>
+                	<!--Desktop Menu-->
+                	
+                    <!--End Desktop Menu-->
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
+                	<div class="logo">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'images\kairos\compass.jpg' %}" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                	
+                </div>
+        	</div>
+        </div>
+    </div>
+    <!--End Header-->
+    <!--Mobile Menu-->
+    
+	<!--End Mobile Menu-->
+    
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Add User</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                	<div class="mb-4">
+                        <form method="post" action="." id="CustomerLoginForm" accept-charset="UTF-8" class="contact-form">	
+                        {% csrf_token %}   
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    {{form}}
+
+                                    {% for message in messages %}
+
+                                <div class="alert alert-danger" role="alert">
+                                  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                    {{message}}
+                                  </li>
+                                </div>
+                              
+                              {% endfor %} 
+
+                                  <
+                                 <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                  <div class="form-group">
+                                      <label for="LastName">Last Name</label>
+                                      <input type="text" name="customer[last_name]" placeholder="" id="LastName">
+                                  </div>
+                                 </div> -->
+                              <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                  <div class="form-group">
+                                      <label for="CustomerEmail">Email</label>
+                                      <input type="email" name="customer[email]" placeholder="" id="CustomerEmail" class="" autocorrect="off" autocapitalize="off" autofocus="">
+                                  </div>
+                              </div> -->
+                              <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                  <div class="form-group">
+                                      <label for="CustomerPassword">Password</label>
+                                      <input type="password" value="" name="customer[password]" placeholder="" id="CustomerPassword" class="">                        	
+                                  </div>
+                              </div> -->
+                            </div>
+                            <div class="row">
+                              <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                                  <input type="submit" class="btn mb-3" value="Create">
+                              </div>
+                           </div>
+                       </form>
+                    </div>
+               	</div>
+            </div>
+        </div>
+        
+    </div>
+    <!--End Body Content-->
+    
+    <!--Footer-->
+    
+    <!--End Footer-->
+    <!--Scoll Top-->
+    <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+    <!--End Scoll Top-->
+
+    <script>
+      window.setTimeout(function() {
+          $(".alert").fadeTo(500, 0).slideUp(500, function(){
+              $(this).remove(); 
+          });
+      }, 500);
+  </script>
+    
+     <!-- Including Jquery -->
+     <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+     <script src="{% static 'js/vendor/jquery.cookie.js' %}"></script>
+     <script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
+     <script src="{% static 'js/vendor/wow.min.js' %}"></script>
+     <!-- Including Javascript -->
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/plugins.js' %}"></script>
+     <script src="{% static 'js/popper.min.js' %}"></script>
+     <script src="{% static 'js/lazysizes.js' %}"></script>
+     <script src="{% static 'js/main.js' %}"></script>
+</div>
+{% endblock content %}
+
+<!-- belle/login.html   11 Nov 2019 12:22:27 GMT -->
+</html>
