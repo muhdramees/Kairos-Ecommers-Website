@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm
-from django.contrib.auth import authenticate, login, logout
+from .forms import LoginForm,SignupForm
+from django.contrib.auth import authenticate, login, logout,get_user_model
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.decorators.cache import cache_control
 from django.contrib.auth.decorators import login_required
@@ -68,9 +69,40 @@ def user_logout(request):
 
 
 def user_signup(request):
+    User = get_user_model()
+    form = SignupForm(request.POST)
+    
 
+    if request.method == 'POST':
 
-    return render(request, 'signup.html')
+        form = SignupForm(request.POST)
+
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if password1 == password2:
+            
+            if User.objects.filter(email = email).exists():
+                messages.info(request, "Email already taken...")
+                
+                return render(request, 'signup.html', {'form' : form})
+
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
+                user.save()
+                messages.info(request, "User Created")
+                return redirect('user_login')
+
+        else:
+            messages.info(request, "Password not match")
+            return render(request, 'signup.html', {'form' : form})
+
+    
+    return render(request, 'signup.html', {'form' : form})
     
     
     
